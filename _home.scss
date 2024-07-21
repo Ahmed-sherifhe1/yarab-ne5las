@@ -872,8 +872,8 @@
 }
 
 @media only screen and ($media-mobile) {
+
     #home {
-        overflow-x: hidden !important;
         .section_one {
             .SectionGrid {
                 grid-template-columns: repeat(1, 1fr) !important;
@@ -1017,6 +1017,7 @@
 
         }
     }
+
 
 }
 
@@ -1180,10 +1181,17 @@
 }
 
 @keyframes line-through {
-    10% {
+    14% {
         width: 100%;
     }
 
+    100% {
+        width: 100%;
+    }
+
+}
+
+@keyframes line-through-mobile {
     100% {
         width: 100%;
     }

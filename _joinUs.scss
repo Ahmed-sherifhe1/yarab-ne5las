@@ -2,6 +2,8 @@
 
     /* Container styling for the form */
     .container-registeration-form {
+        transform: skew(0deg, 3deg) translate(0px, 20px);
+        opacity: 0;
         padding: 30px;
         margin: auto;
         // background-color: #f9f9f9;
@@ -89,5 +91,15 @@
 
     button[type="submit"]:hover {
         background-color: darkpurple;
+    }
+}
+
+
+@media only screen and (max-width:767px) {
+    .joinUs {
+        h2 {
+            padding: 20px 0px 0px 10px !important;
+            font-size: 0.6779rem !important;
+        }
     }
 }
