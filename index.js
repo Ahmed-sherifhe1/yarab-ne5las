@@ -61,7 +61,6 @@ function apiOurGallery() {
   });
 
   fetchImagesAll();
-
   //Attaching Api for Images on Gallery on *Events* Page
   const endpointEvents = "http://24.199.127.212:3000/galleryClient/getEvents";
   const imagesPerPageEvents = 10;
@@ -373,7 +372,6 @@ navItems.forEach((item) => {
       }, 800);
       setTimeout(() => {
         mains[2].style.opacity = "1";
-        console.log("ou-committes Section has been Appeared");
       }, 900);
     } else if (item == navItems[4]) {
       mains.forEach((m) => {
@@ -387,11 +385,12 @@ navItems.forEach((item) => {
       }, 800);
       setTimeout(() => {
         mains[6].style.opacity = "1";
-        console.log("ou-committes Section has been Appeared");
       }, 900);
+      setTimeout(() => {
+        AnimationContact();
+      });
     }
     // to be continue
-    console.log(item);
   };
 });
 // background-color: var(--purple-accent); */
@@ -415,6 +414,7 @@ dropdownItem.forEach((item) => {
       setTimeout(() => {
         mains[3].style.opacity = "1";
         console.log("Information Section has been Appeared");
+        AnimationInfo();
       }, 900);
     } else if (item == dropdownItem[1]) {
       mains.forEach((m) => {
@@ -429,68 +429,10 @@ dropdownItem.forEach((item) => {
       setTimeout(() => {
         mains[4].style.opacity = "1";
         console.log("Information Section has been Appeared");
-        // let nCount = (selector) => {
-        //   $(selector).each(function () {
-        //     const $span = $(this).find("span:first-child"); // Target the first span within each h3
-        //     const currentCount = parseInt($span.text());
-        //     const currentYear = new Date().getFullYear();
-        //     const storedYear = localStorage.getItem("lastIncrementYear");
-
-        //     if (storedYear !== currentYear) {
-        //       const newCount = currentCount + 1;
-        //       $span.animate(
-        //         {
-        //           Counter: newCount,
-        //         },
-        //         {
-        //           duration: 4000,
-        //           easing: "swing",
-        //           step: function (value) {
-        //             $span.text(Math.ceil(value));
-        //           },
-        //         }
-        //       );
-
-        //       localStorage.setItem("lastIncrementYear", currentYear);
-        //     }
-        //   });
-        // };
-
-        // $(document).ready(function () {
-        //   // Trigger the counter increment on page load
-        //   nCount(".numbers h3");
-        // });
       }, 900);
-      // setTimeout(()=>{
-      //   let nCount = selector => {
-      //     $(selector).each(function () {
-      //       const $span = $(this).find("span:first-child"); // Target the first span within each h3
-      //       const currentCount = parseInt($span.text());
-      //       const currentYear = new Date().getFullYear();
-      //       const storedYear = localStorage.getItem("lastIncrementYear");
-
-      //       if (storedYear !== currentYear) {
-      //         const newCount = currentCount + 1;
-      //         $span.animate({
-      //           Counter: newCount
-      //         }, {
-      //           duration: 4000,
-      //           easing: "swing",
-      //           step: function (value) {
-      //             $span.text(Math.ceil(value));
-      //           }
-      //         });
-
-      //         localStorage.setItem("lastIncrementYear", currentYear);
-      //       }
-      //     });
-      //   };
-
-      //   $(document).ready(function () {
-      //     // Trigger the counter increment on page load
-      //     nCount(".numbers h3");
-      //   });
-      // },1000)
+      setTimeout(() => {
+        AnimationOurTeam();
+      }, 1000);
     } else if (item == dropdownItem[2]) {
       mains.forEach((m) => {
         m.style.opacity = 0;
@@ -503,13 +445,127 @@ dropdownItem.forEach((item) => {
       }, 800);
       setTimeout(() => {
         mains[5].style.opacity = "1";
-        console.log("Information Section has been Appeared");
       }, 900);
+      setTimeout(() => {
+        AnimationBlog();
+      }, 1000);
     }
   };
 });
 
 //Start Animation in Home Page
+function ScrollingAnimationHome() {
+  let mytotalHeight = (window.innerHeight / 5) * 4;
+  for (let i = 2; i < 7; i++) {
+    var stElement = document.querySelectorAll("#bestStudent")[i];
+    var mystElementTop = stElement.getBoundingClientRect().top;
+    if (mystElementTop < mytotalHeight) {
+      document.querySelectorAll("#bestStudent")[i].style.cssText +=
+        "animation: showing-text 1s, cursor 0.4s step-end alternate,showTitleMsp 0.2s forwards;";
+    } else {
+      document.querySelectorAll("#bestStudent")[i].style.cssText +=
+        "animation: none;";
+    }
+  }
+  const ndElement = document.querySelectorAll(".desBestStudent");
+  const features = document.querySelectorAll(".features");
+  const featuresImage = document.querySelector(".features-image");
+  const featuresImageTop = featuresImage.getBoundingClientRect().top;
+  const QuestionsAsked = document.querySelector(".Questions-Asked");
+  const QuestionsAskedTop = QuestionsAsked.getBoundingClientRect().top;
+  // const myNdElementTop = ndElement.getBoundingClientRect().top;
+  const rdElement = document.querySelectorAll(".sections");
+  const thElement = document.querySelectorAll(".btn-sections");
+  const participants = document.querySelectorAll(".participant");
+  const sponserCards = document.querySelectorAll(".sponsor-card");
+  const formQuestions = document.querySelector(".container-form");
+  const formQuestionsTop = formQuestions.getBoundingClientRect().top;
+  const linesHome = document.querySelectorAll(".line-over-mobile");
+  // End Constants
+  if (QuestionsAskedTop < mytotalHeight) {
+    [...QuestionsAsked.children].forEach((e) => {
+      e.style.cssText += `animation:question-asked-${[
+        ...QuestionsAsked.children,
+      ].indexOf(e)} 2s forwards;`;
+    });
+  } else {
+    [...QuestionsAsked.children].forEach((e) => {
+      e.style.cssText += `animation:none;`;
+    });
+  }
+  if (featuresImageTop < mytotalHeight) {
+    featuresImage.style.cssText += "animation: showTitleMsp 3s forwards;";
+  } else {
+    featuresImage.style.cssText += "animation:auto";
+  }
+  if (formQuestionsTop < mytotalHeight) {
+    formQuestions.style.cssText += "animation: showTitleMsp 2s forwards;";
+  } else {
+    formQuestions.style.cssText += "animation:auto";
+  }
+  ndElement.forEach((e) => {
+    var eTop = e.getBoundingClientRect().top;
+    if (eTop < mytotalHeight) {
+      e.style.cssText += "animation: showTitleMsp 1s forwards;";
+    } else {
+      e.style.cssText += "animation:auto";
+    }
+  });
+  features.forEach((e) => {
+    var eTop = e.getBoundingClientRect().top;
+    if (eTop < mytotalHeight) {
+      e.style.cssText += "animation: showTitleMsp 1s forwards;";
+    } else {
+      e.style.cssText += "animation:auto";
+    }
+  });
+  participants.forEach((e) => {
+    var eTop = e.getBoundingClientRect().top;
+    if (eTop < mytotalHeight) {
+      e.style.cssText += "animation: showTitleMsp 1s forwards;";
+    } else {
+      e.style.cssText += "animation:auto";
+    }
+  });
+  sponserCards.forEach((e) => {
+    var eTop = e.getBoundingClientRect().top;
+    if (eTop < mytotalHeight) {
+      e.style.cssText += "animation: showTitleMsp 1s forwards;";
+    } else {
+      e.style.cssText += "animation:auto";
+    }
+  });
+  rdElement.forEach((e) => {
+    //here rdElement is the cards in ourCommittees section and e represents each card in this section
+    var eTop = e.getBoundingClientRect().top;
+    if (eTop < mytotalHeight) {
+      e.style.cssText += "animation: showTitleMsp 1s forwards;";
+    } else {
+      e.style.cssText += "animation:auto";
+    }
+  });
+  thElement.forEach((e) => {
+    //here rdElement is the buttons in every section and e represents each button in each section
+    var eTop = e.getBoundingClientRect().top;
+    if (eTop < mytotalHeight) {
+      e.style.cssText += "animation: showTitleMsp 1s forwards;";
+    } else {
+      e.style.cssText += "animation:auto;";
+    }
+  });
+  if (window.innerWidth <= 768) {
+    linesHome.forEach((e) => {
+      //here rdElement is the buttons in every section and e represents each button in each section
+      var eTop = e.getBoundingClientRect().top;
+      if (eTop < mytotalHeight) {
+        e.style.cssText +=
+          "animation: line-through-mobile 2s forwards !important;";
+      } else {
+        e.style.cssText += "animation:none !important;";
+      }
+    });
+  }
+}
 function AnimationHome() {
   setTimeout(() => {
     document.querySelector("#titleMsp").style.cssText +=
@@ -582,134 +638,1561 @@ function AnimationHome() {
     nCount(".numbers h3");
     // });
   }, 5250);
+  // setTimeout(() => {
+  // window.onscroll = () => {
+  // start Constants to reveal while scrolling on page
+  // let mytotalHeight = (window.innerHeight / 5) * 4;
+  // for (let i = 2; i < 7; i++) {
+  //   var stElement = document.querySelectorAll("#bestStudent")[i];
+  //   var mystElementTop = stElement.getBoundingClientRect().top;
+  //   if (mystElementTop < mytotalHeight) {
+  //     document.querySelectorAll("#bestStudent")[i].style.cssText +=
+  //       "animation: showing-text 1s, cursor 0.4s step-end alternate,showTitleMsp 0.2s forwards;";
+  //   } else {
+  //     document.querySelectorAll("#bestStudent")[i].style.cssText +=
+  //       "animation: none;";
+  //   }
+  // }
+  // const ndElement = document.querySelectorAll(".desBestStudent");
+  // const features = document.querySelectorAll(".features");
+  // const featuresImage = document.querySelector(".features-image");
+  // const featuresImageTop = featuresImage.getBoundingClientRect().top;
+  // const QuestionsAsked = document.querySelector(".Questions-Asked");
+  // const QuestionsAskedTop = QuestionsAsked.getBoundingClientRect().top;
+  // // const myNdElementTop = ndElement.getBoundingClientRect().top;
+  // const rdElement = document.querySelectorAll(".sections");
+  // const thElement = document.querySelectorAll(".btn-sections");
+  // const participants = document.querySelectorAll(".participant");
+  // const sponserCards = document.querySelectorAll(".sponsor-card");
+  // const formQuestions = document.querySelector(".container-form");
+  // const formQuestionsTop = formQuestions.getBoundingClientRect().top;
+  // // End Constants
+  // if (QuestionsAskedTop < mytotalHeight) {
+  //   [...QuestionsAsked.children].forEach((e) => {
+  //     e.style.cssText += `animation:question-asked-${[
+  //       ...QuestionsAsked.children,
+  //     ].indexOf(e)} 2s forwards;`;
+  //   });
+  // } else {
+  //   [...QuestionsAsked.children].forEach((e) => {
+  //     e.style.cssText += `animation:none;`;
+  //   });
+  // }
+  // if (featuresImageTop < mytotalHeight) {
+  //   featuresImage.style.cssText += "animation: showTitleMsp 3s forwards;";
+  // } else {
+  //   featuresImage.style.cssText += "animation:auto";
+  // }
+  // if (formQuestionsTop < mytotalHeight) {
+  //   formQuestions.style.cssText += "animation: showTitleMsp 2s forwards;";
+  // } else {
+  //   formQuestions.style.cssText += "animation:auto";
+  // }
+  // ndElement.forEach((e) => {
+  //   var eTop = e.getBoundingClientRect().top;
+  //   if (eTop < mytotalHeight) {
+  //     e.style.cssText += "animation: showTitleMsp 1s forwards;";
+  //   } else {
+  //     e.style.cssText += "animation:auto";
+  //   }
+  // });
+  // features.forEach((e) => {
+  //   var eTop = e.getBoundingClientRect().top;
+  //   if (eTop < mytotalHeight) {
+  //     e.style.cssText += "animation: showTitleMsp 1s forwards;";
+  //   } else {
+  //     e.style.cssText += "animation:auto";
+  //   }
+  // });
+  // participants.forEach((e) => {
+  //   var eTop = e.getBoundingClientRect().top;
+  //   if (eTop < mytotalHeight) {
+  //     e.style.cssText += "animation: showTitleMsp 1s forwards;";
+  //   } else {
+  //     e.style.cssText += "animation:auto";
+  //   }
+  // });
+  // sponserCards.forEach((e) => {
+  //   var eTop = e.getBoundingClientRect().top;
+  //   if (eTop < mytotalHeight) {
+  //     e.style.cssText += "animation: showTitleMsp 1s forwards;";
+  //   } else {
+  //     e.style.cssText += "animation:auto";
+  //   }
+  // });
+  // rdElement.forEach((e) => {
+  //   //here rdElement is the cards in ourCommittees section and e represents each card in this section
+  //   var eTop = e.getBoundingClientRect().top;
+  //   if (eTop < mytotalHeight) {
+  //     e.style.cssText += "animation: showTitleMsp 1s forwards;";
+  //   } else {
+  //     e.style.cssText += "animation:auto";
+  //   }
+  // });
+  // thElement.forEach((e) => {
+  //   //here rdElement is the buttons in every section and e represents each button in each section
+  //   var eTop = e.getBoundingClientRect().top;
+  //   if (eTop < mytotalHeight) {
+  //     e.style.cssText += "animation: showTitleMsp 1s forwards;";
+  //   } else {
+  //     e.style.cssText += "animation:auto;";
+  //   }
+  // });
+  // };
+  // });
+}
+//End Animation in Home Page
+
+//Start Animation in Information About Us Page
+function ScrollingAnimationInfo() {
+  let totalHeight = (window.innerHeight / 5) * 4;
+
+  const titleInfo = document.querySelectorAll("#bestStudent")[7];
+  const titleInfoTop = titleInfo.getBoundingClientRect().top;
+  const desInfo = document.querySelectorAll(".des-info-bestStudent")[0];
+  const desInfoTop = desInfo.getBoundingClientRect().top;
+  const yearTimelineWord = document.querySelectorAll(".des-year-timline");
+  const desYearTimline0 = document.querySelectorAll(".year-timeline")[0];
+  const desYearTimline1 = document.querySelectorAll(".year-timeline")[1];
+  const desYearTimline2 = document.querySelectorAll(".year-timeline")[2];
+  const desYearTimline3 = document.querySelectorAll(".year-timeline")[3];
+  const desYearTimline4 = document.querySelectorAll(".year-timeline")[4];
+  const desYearTimline5 = document.querySelectorAll(".year-timeline")[5];
+  const desYearTimline6 = document.querySelectorAll(".year-timeline")[6];
+  const desYearTimline7 = document.querySelectorAll(".year-timeline")[7];
+  const desYearTimline8 = document.querySelectorAll(".year-timeline")[8];
+  const desYearTimline9 = document.querySelectorAll(".year-timeline")[9];
+  const desYearTimline10 = document.querySelectorAll(".year-timeline")[10];
+  const desYearTimline0Top = desYearTimline0.getBoundingClientRect().top;
+  const desYearTimline1Top = desYearTimline1.getBoundingClientRect().top;
+  const desYearTimline2Top = desYearTimline2.getBoundingClientRect().top;
+  const desYearTimline3Top = desYearTimline3.getBoundingClientRect().top;
+  const desYearTimline4Top = desYearTimline4.getBoundingClientRect().top;
+  const desYearTimline5Top = desYearTimline5.getBoundingClientRect().top;
+  const desYearTimline6Top = desYearTimline6.getBoundingClientRect().top;
+  const desYearTimline7Top = desYearTimline7.getBoundingClientRect().top;
+  const desYearTimline8Top = desYearTimline8.getBoundingClientRect().top;
+  const desYearTimline9Top = desYearTimline9.getBoundingClientRect().top;
+  const desYearTimline10Top = desYearTimline10.getBoundingClientRect().top;
+  if (titleInfoTop < totalHeight) {
+    titleInfo.style.cssText +=
+      "animation: showing-text 1s, cursor 0.4s step-end alternate,showTitleMsp 0.2s forwards;";
+  } else {
+    titleInfo.style.cssText += "animation: none;";
+  }
+  if (desInfoTop < totalHeight) {
+    desInfo.style.cssText += "animation: showTitleMsp 1s forwards;";
+  } else {
+    desInfo.style.cssText += "animation: none;";
+  }
+  if (desYearTimline0Top < totalHeight) {
+    setTimeout(() => {
+      desYearTimline0.style.cssText += "animation: showSquare 1s forwards;";
+    }, 100);
+    setTimeout(() => {
+      document.querySelector("#line-info").classList.add("timeline-continue-4");
+    }, 1000);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[1]
+        .classList.add("timeline-names-show");
+      document
+        .querySelectorAll(".timeline-names")[0]
+        .classList.add("timeline-names-show");
+    }, 1700);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[1]
+        .classList.add("timeline-names-show2");
+      document
+        .querySelectorAll(".timeline-names")[0]
+        .classList.add("timeline-names-show2");
+    }, 2400);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-names")[1].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[0].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[1].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+      document.querySelectorAll(".timeline-names")[0].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+    }, 3100);
+    setTimeout(() => {
+      document.querySelectorAll(".des-timeline-names")[0].style.opacity = "1";
+      document.querySelectorAll(".des-timeline-names")[1].style.opacity = "1";
+    }, 3800);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-box-left")[0].style.cssText +=
+        "animation: showTitleMsp 1s forwards;";
+    }, 4500);
+    setTimeout(() => {
+      document.querySelector("#line-info").classList.add("timeline-continue-9");
+    }, 5500);
+  } else {
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-100");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-95");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-91");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-86");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-82");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-77");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-72");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-67");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-63");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-58");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-54");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-49");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-45");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-40");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-36");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-31");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-22");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-27");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-9");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-13");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-18");
+    document.querySelectorAll(".timeline-box-left")[0].style.cssText +=
+      "animation: none;";
+    document.querySelectorAll(".des-timeline-names")[1].style.opacity = "0";
+    document.querySelectorAll(".timeline-names")[1].style.borderColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[1]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[1]
+      .classList.remove("timeline-names-show");
+    document.querySelectorAll(".des-timeline-names")[0].style.opacity = "0";
+    document.querySelectorAll(".timeline-names")[0].style.borderColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[0]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[0]
+      .classList.remove("timeline-names-show");
+    document
+
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-4");
+    desYearTimline0.style.cssText += "animation: none;";
+  }
+  if (desYearTimline1Top < totalHeight) {
+    setTimeout(() => {
+      desYearTimline1.style.cssText += "animation: showSquare 1s forwards;";
+    }, 100);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-13");
+    }, 1000);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[2]
+        .classList.add("timeline-names-show");
+    }, 1700);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[2]
+        .classList.add("timeline-names-show2");
+    }, 2400);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-names")[2].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[2].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+    }, 3100);
+    setTimeout(() => {
+      document.querySelectorAll(".des-timeline-names")[2].style.opacity = "1";
+    }, 3800);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-box-right")[0].style.cssText +=
+        "animation: showTitleMsp 1s forwards;";
+    }, 4500);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-18");
+    }, 5500);
+  } else {
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-100");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-95");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-91");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-86");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-82");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-77");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-72");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-67");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-63");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-58");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-54");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-49");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-45");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-40");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-36");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-31");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-27");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-22");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-18");
+    document.querySelectorAll(".timeline-box-right")[0].style.cssText +=
+      "animation: none";
+    document.querySelectorAll(".des-timeline-names")[2].style.opacity = "0";
+    document.querySelectorAll(".timeline-names")[2].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[2].style.backgroundColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[2]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelectorAll(".timeline-names")[2]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-13");
+    desYearTimline1.style.cssText += "animation: none;";
+  }
+  if (desYearTimline2Top < totalHeight) {
+    setTimeout(() => {
+      desYearTimline2.style.cssText += "animation: showSquare 1s forwards;";
+    }, 100);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-22");
+    }, 1000);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[3]
+        .classList.add("timeline-names-show");
+      document
+        .querySelectorAll(".timeline-names")[4]
+        .classList.add("timeline-names-show");
+    }, 1700);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[3]
+        .classList.add("timeline-names-show2");
+      document
+        .querySelectorAll(".timeline-names")[4]
+        .classList.add("timeline-names-show2");
+    }, 2400);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-names")[3].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[3].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+      document.querySelectorAll(".timeline-names")[4].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[4].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+    }, 3100);
+    setTimeout(() => {
+      document.querySelectorAll(".des-timeline-names")[3].style.opacity = "1";
+      document.querySelectorAll(".des-timeline-names")[4].style.opacity = "1";
+    }, 3800);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-box-left")[1].style.cssText +=
+        "animation: showTitleMsp 1s forwards;";
+    }, 4500);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-27");
+    }, 5500);
+  } else {
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-100");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-95");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-91");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-86");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-82");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-77");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-72");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-67");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-63");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-58");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-54");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-49");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-45");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-40");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-36");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-31");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-27");
+    document.querySelectorAll(".timeline-box-left")[1].style.cssText +=
+      "animation: none;";
+    document.querySelectorAll(".des-timeline-names")[3].style.opacity = "0";
+    document.querySelectorAll(".des-timeline-names")[4].style.opacity = "0";
+    document.querySelectorAll(".timeline-names")[3].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[3].style.backgroundColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[4].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[4].style.backgroundColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[3]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[4]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[3]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelectorAll(".timeline-names")[4]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-22");
+    desYearTimline2.style.cssText += "animation: none;";
+  }
+  if (desYearTimline3Top < totalHeight) {
+    setTimeout(() => {
+      desYearTimline3.style.cssText += "animation: showSquare 1s forwards;";
+    }, 100);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-31");
+    }, 1000);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[5]
+        .classList.add("timeline-names-show");
+    }, 1700);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[5]
+        .classList.add("timeline-names-show2");
+    }, 2400);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-names")[5].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[5].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+    }, 3100);
+    setTimeout(() => {
+      document.querySelectorAll(".des-timeline-names")[5].style.opacity = "1";
+    }, 3800);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-box-right")[1].style.cssText +=
+        "animation: showTitleMsp 1s forwards;";
+    }, 4500);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-36");
+    }, 5500);
+  } else {
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-100");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-95");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-91");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-86");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-82");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-77");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-72");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-67");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-63");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-58");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-54");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-49");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-45");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-40");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-36");
+    document.querySelectorAll(".timeline-box-right")[1].style.cssText +=
+      "animation: none;";
+    document.querySelectorAll(".des-timeline-names")[5].style.opacity = "0";
+
+    document.querySelectorAll(".timeline-names")[5].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[5].style.backgroundColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[5]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[5]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-31");
+    desYearTimline3.style.cssText += "animation: none;";
+  }
+  if (desYearTimline4Top < totalHeight) {
+    setTimeout(() => {
+      desYearTimline4.style.cssText += "animation: showSquare 1s forwards;";
+    }, 100);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-40");
+    }, 1000);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[6]
+        .classList.add("timeline-names-show");
+      document
+        .querySelectorAll(".timeline-names")[7]
+        .classList.add("timeline-names-show");
+    }, 1700);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[6]
+        .classList.add("timeline-names-show2");
+      document
+        .querySelectorAll(".timeline-names")[7]
+        .classList.add("timeline-names-show2");
+    }, 2400);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-names")[6].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[6].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+      document.querySelectorAll(".timeline-names")[7].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[7].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+    }, 3100);
+    setTimeout(() => {
+      document.querySelectorAll(".des-timeline-names")[6].style.opacity = "1";
+      document.querySelectorAll(".des-timeline-names")[7].style.opacity = "1";
+    }, 3800);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-box-left")[2].style.cssText +=
+        "animation: showTitleMsp 1s forwards;";
+    }, 4500);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-45");
+    }, 5500);
+  } else {
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-100");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-95");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-91");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-86");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-82");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-77");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-72");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-67");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-63");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-58");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-54");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-49");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-45");
+    document.querySelectorAll(".timeline-box-left")[2].style.cssText +=
+      "animation: none;";
+    document.querySelectorAll(".des-timeline-names")[6].style.opacity = "0";
+    document.querySelectorAll(".des-timeline-names")[7].style.opacity = "0";
+    document.querySelectorAll(".timeline-names")[6].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[6].style.backgroundColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[7].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[7].style.backgroundColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[6]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[7]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[6]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelectorAll(".timeline-names")[7]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-40");
+    desYearTimline4.style.cssText += "animation: none;";
+  }
+  if (desYearTimline5Top < totalHeight) {
+    setTimeout(() => {
+      desYearTimline5.style.cssText += "animation: showSquare 1s forwards;";
+    }, 100);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-49");
+    }, 1000);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[8]
+        .classList.add("timeline-names-show");
+    }, 1700);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[8]
+        .classList.add("timeline-names-show2");
+    }, 2400);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-names")[8].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[8].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+    }, 3100);
+    setTimeout(() => {
+      document.querySelectorAll(".des-timeline-names")[8].style.opacity = "1";
+    }, 3800);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-box-right")[2].style.cssText +=
+        "animation: showTitleMsp 1s forwards;";
+    }, 4500);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-54");
+    }, 5500);
+  } else {
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-100");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-95");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-91");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-86");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-82");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-77");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-72");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-67");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-63");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-58");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-54");
+    document.querySelectorAll(".timeline-box-right")[2].style.cssText +=
+      "animation: none;";
+    document.querySelectorAll(".des-timeline-names")[8].style.opacity = "0";
+    document.querySelectorAll(".timeline-names")[8].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[8].style.backgroundColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[8]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[8]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-49");
+    desYearTimline5.style.cssText += "animation: none;";
+  }
+  if (desYearTimline6Top < totalHeight) {
+    setTimeout(() => {
+      desYearTimline6.style.cssText += "animation: showSquare 1s forwards;";
+    }, 100);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-58");
+    }, 1000);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[9]
+        .classList.add("timeline-names-show");
+      document
+        .querySelectorAll(".timeline-names")[10]
+        .classList.add("timeline-names-show");
+    }, 1700);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[9]
+        .classList.add("timeline-names-show2");
+      document
+        .querySelectorAll(".timeline-names")[10]
+        .classList.add("timeline-names-show2");
+    }, 2400);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-names")[9].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[9].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+      document.querySelectorAll(".timeline-names")[10].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[10].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+    }, 3100);
+    setTimeout(() => {
+      document.querySelectorAll(".des-timeline-names")[9].style.opacity = "1";
+      document.querySelectorAll(".des-timeline-names")[10].style.opacity = "1";
+    }, 3800);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-box-left")[3].style.cssText +=
+        "animation: showTitleMsp 1s forwards;";
+    }, 4500);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-63");
+    }, 5500);
+  } else {
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-100");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-95");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-91");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-86");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-82");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-77");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-72");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-67");
+    document.querySelectorAll(".timeline-box-left")[3].style.cssText +=
+      "animation: none;";
+    document.querySelectorAll(".des-timeline-names")[9].style.opacity = "0";
+    document.querySelectorAll(".des-timeline-names")[10].style.opacity = "0";
+    document.querySelectorAll(".timeline-names")[9].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[9].style.backgroundColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[10].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[10].style.backgroundColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[9]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[10]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[9]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelectorAll(".timeline-names")[10]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-63");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-58");
+    desYearTimline6.style.cssText += "animation: none;";
+  }
+  if (desYearTimline7Top < totalHeight) {
+    setTimeout(() => {
+      desYearTimline7.style.cssText += "animation: showSquare 1s forwards;";
+    }, 100);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-67");
+    }, 1000);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[11]
+        .classList.add("timeline-names-show");
+    }, 1700);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[11]
+        .classList.add("timeline-names-show2");
+    }, 2400);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-names")[11].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[11].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+    }, 3100);
+    setTimeout(() => {
+      document.querySelectorAll(".des-timeline-names")[11].style.opacity = "1";
+    }, 3800);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-box-right")[3].style.cssText +=
+        "animation: showTitleMsp 1s forwards;";
+    }, 4500);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-72");
+    }, 5500);
+  } else {
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-100");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-95");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-91");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-86");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-82");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-77");
+    document.querySelectorAll(".timeline-box-right")[3].style.cssText +=
+      "animation: none;";
+    document.querySelectorAll(".des-timeline-names")[11].style.opacity = "0";
+    document.querySelectorAll(".timeline-names")[11].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[11].style.backgroundColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[11]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[11]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-72");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-67");
+    desYearTimline7.style.cssText += "animation: none;";
+  }
+  if (desYearTimline8Top < totalHeight) {
+    setTimeout(() => {
+      desYearTimline8.style.cssText += "animation: showSquare 1s forwards;";
+    }, 100);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-77");
+    }, 1000);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[12]
+        .classList.add("timeline-names-show");
+      document
+        .querySelectorAll(".timeline-names")[13]
+        .classList.add("timeline-names-show");
+    }, 1700);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[12]
+        .classList.add("timeline-names-show2");
+      document
+        .querySelectorAll(".timeline-names")[13]
+        .classList.add("timeline-names-show2");
+    }, 2400);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-names")[12].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[12].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+      document.querySelectorAll(".timeline-names")[13].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[13].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+    }, 3100);
+    setTimeout(() => {
+      document.querySelectorAll(".des-timeline-names")[12].style.opacity = "1";
+      document.querySelectorAll(".des-timeline-names")[13].style.opacity = "1";
+    }, 3800);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-box-left")[4].style.cssText +=
+        "animation: showTitleMsp 1s forwards;";
+    }, 4500);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-82");
+    }, 5500);
+  } else {
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-100");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-95");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-91");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-86");
+    document.querySelectorAll(".timeline-box-left")[4].style.cssText +=
+      "animation: none;";
+    document.querySelectorAll(".des-timeline-names")[12].style.opacity = "0";
+    document.querySelectorAll(".des-timeline-names")[13].style.opacity = "0";
+    document.querySelectorAll(".timeline-names")[12].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[12].style.backgroundColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[13].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[13].style.backgroundColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[12]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[13]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[12]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelectorAll(".timeline-names")[13]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-82");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-77");
+    desYearTimline8.style.cssText += "animation: none;";
+  }
+  if (desYearTimline9Top < totalHeight) {
+    setTimeout(() => {
+      desYearTimline9.style.cssText += "animation: showSquare 1s forwards;";
+    }, 100);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-86");
+    }, 1000);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[14]
+        .classList.add("timeline-names-show");
+    }, 1700);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[14]
+        .classList.add("timeline-names-show2");
+    }, 2400);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-names")[14].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[14].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+    }, 3100);
+    setTimeout(() => {
+      document.querySelectorAll(".des-timeline-names")[14].style.opacity = "1";
+    }, 3800);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-box-right")[4].style.cssText +=
+        "animation: showTitleMsp 1s forwards;";
+    }, 4500);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-91");
+    }, 5500);
+  } else {
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-100");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-95");
+    document.querySelectorAll(".timeline-box-right")[4].style.cssText +=
+      "animation: none;";
+    document.querySelectorAll(".des-timeline-names")[14].style.opacity = "0";
+    document.querySelectorAll(".timeline-names")[14].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[14].style.backgroundColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[14]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[14]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-91");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-86");
+    desYearTimline9.style.cssText += "animation: none;";
+  }
+  if (desYearTimline10Top < totalHeight) {
+    setTimeout(() => {
+      desYearTimline10.style.cssText += "animation: showSquare 1s forwards;";
+    }, 100);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-95");
+    }, 1000);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[15]
+        .classList.add("timeline-names-show");
+      document
+        .querySelectorAll(".timeline-names")[16]
+        .classList.add("timeline-names-show");
+    }, 1700);
+    setTimeout(() => {
+      document
+        .querySelectorAll(".timeline-names")[15]
+        .classList.add("timeline-names-show2");
+      document
+        .querySelectorAll(".timeline-names")[16]
+        .classList.add("timeline-names-show2");
+    }, 2400);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-names")[15].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[15].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+      document.querySelectorAll(".timeline-names")[16].style.borderColor =
+        "rgba(123, 29, 128, 0.60)";
+      document.querySelectorAll(".timeline-names")[16].style.backgroundColor =
+        "var(--main-bg-nav-color)";
+    }, 3100);
+    setTimeout(() => {
+      document.querySelectorAll(".des-timeline-names")[15].style.opacity = "1";
+      document.querySelectorAll(".des-timeline-names")[16].style.opacity = "1";
+    }, 3800);
+    setTimeout(() => {
+      document.querySelectorAll(".timeline-box-left")[5].style.cssText +=
+        "animation: showTitleMsp 1s forwards;";
+    }, 4500);
+    setTimeout(() => {
+      document
+        .querySelector("#line-info")
+        .classList.add("timeline-continue-100");
+    }, 5500);
+  } else {
+    document.querySelectorAll(".timeline-box-left")[5].style.cssText +=
+      "animation: none;";
+    document.querySelectorAll(".des-timeline-names")[15].style.opacity = "0";
+    document.querySelectorAll(".des-timeline-names")[16].style.opacity = "0";
+
+    document.querySelectorAll(".timeline-names")[15].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[15].style.backgroundColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[16].style.borderColor =
+      "transparent";
+    document.querySelectorAll(".timeline-names")[16].style.backgroundColor =
+      "transparent";
+    document
+      .querySelectorAll(".timeline-names")[15]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[16]
+      .classList.remove("timeline-names-show2");
+    document
+      .querySelectorAll(".timeline-names")[15]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelectorAll(".timeline-names")[16]
+      .classList.remove("timeline-names-show");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-100");
+    document
+      .querySelector("#line-info")
+      .classList.remove("timeline-continue-95");
+    desYearTimline10.style.cssText += "animation: none;";
+  }
+  // yearTimeline.forEach((e) => {
+  //   //here rdElement is the buttons in every section and e represents each button in each section
+  //   var eTop = e.getBoundingClientRect().top;
+  //   if (eTop < totalHeight) {
+  //     e.style.cssText += "animation: showSquare 1s forwards;";
+  //   } else {
+  //     e.style.cssText += "animation:auto;";
+  //   }
+  // });
+  yearTimelineWord.forEach((e) => {
+    //here rdElement is the buttons in every section and e represents each button in each section
+    var eTop = e.getBoundingClientRect().top;
+    if (eTop < totalHeight) {
+      e.style.cssText += "animation: showWordSquare 1s forwards;";
+    } else {
+      e.style.cssText += "animation:auto;";
+    }
+  });
+}
+function AnimationInfo() {
   setTimeout(() => {
-    window.onscroll = () => {
-      // start Constants to reveal while scrolling on page
-      let mytotalHeight = (window.innerHeight / 5) * 4;
-      for (let i = 2; i < 7; i++) {
-        var stElement = document.querySelectorAll("#bestStudent")[i];
-        var mystElementTop = stElement.getBoundingClientRect().top;
-        if (mystElementTop < mytotalHeight) {
-          document.querySelectorAll("#bestStudent")[i].style.cssText +=
-            "animation: showing-text 1s, cursor 0.4s step-end alternate,showTitleMsp 0.2s forwards;";
-        } else {
-          document.querySelectorAll("#bestStudent")[i].style.cssText +=
-            "animation: none;";
-        }
+    document.querySelector(".title-msp").style.cssText +=
+      "animation: showTitleMsp 1s forwards;";
+  }, 200);
+  setTimeout(() => {
+    document.querySelector(".span-des-title-msp").style.cssText +=
+      "animation : showing-text 1s, cursor 0.2s step-end alternate,showTitleMsp 0.2s forwards;";
+  }, 1200);
+  setTimeout(() => {
+    document.querySelector(".p-des-title-msp").style.cssText +=
+      "animation: showTitleMsp 1s forwards;";
+  }, 2200);
+  setTimeout(() => {
+    document.querySelector(".bubble-img-info").style.cssText +=
+      "animation: showTitleMsp 1s forwards;";
+  }, 3200);
+  function nCount(selector) {
+    const elements = document.querySelectorAll(selector);
+
+    for (const element of elements) {
+      const firstSpan = element.querySelector("span:first-child"); // Target the first span within each h3
+      if (!firstSpan) {
+        console.warn(
+          `Skipping element at "${selector}" because it has no first-child span.`
+        );
+        continue;
       }
-      const ndElement = document.querySelectorAll(".desBestStudent");
-      const features = document.querySelectorAll(".features");
-      const featuresImage = document.querySelector(".features-image");
-      const featuresImageTop = featuresImage.getBoundingClientRect().top;
-      const QuestionsAsked = document.querySelector(".Questions-Asked");
-      const QuestionsAskedTop = QuestionsAsked.getBoundingClientRect().top;
-      // const myNdElementTop = ndElement.getBoundingClientRect().top;
-      const rdElement = document.querySelectorAll(".sections");
-      const thElement = document.querySelectorAll(".btn-sections");
-      const participants = document.querySelectorAll(".participant");
-      const sponserCards = document.querySelectorAll(".sponsor-card");
-      const formQuestions = document.querySelector(".container-form");
-      const formQuestionsTop = formQuestions.getBoundingClientRect().top;
-      // End Constants
-      if (QuestionsAskedTop < mytotalHeight) {
-        [...QuestionsAsked.children].forEach((e) => {
-          e.style.cssText += `animation:question-asked-${[
-            ...QuestionsAsked.children,
-          ].indexOf(e)} 2s forwards;`;
-        });
+
+      const currentCount = parseInt(firstSpan.textContent, 10);
+      const currentYear = new Date().getFullYear();
+      const storedYear = localStorage.getItem("lastIncrementYear");
+
+      if (storedYear !== currentYear) {
+        const newCount = currentCount + 1;
+
+        // Animate the counter using vanilla JavaScript
+        firstSpan.textContent = currentCount; // Set initial value before animation
+
+        let stepCount = 0;
+        const animationInterval = setInterval(() => {
+          stepCount++;
+          const animatedValue = Math.ceil((stepCount / 40) * newCount); // Calculate smooth animation steps
+
+          firstSpan.textContent = animatedValue;
+
+          if (stepCount === 40) {
+            // Duration = 40 steps * 100ms/step
+            clearInterval(animationInterval);
+          }
+        }, 100);
+
+        localStorage.setItem("lastIncrementYear", currentYear);
+      }
+    }
+  }
+  setTimeout(() => {
+    document.querySelector(".dynamic-info").style.cssText +=
+      "animation: showTitleMsp 1s forwards;";
+    // document.addEventListener("DOMContentLoaded", () => {
+    nCount(".numbers h3");
+    // });
+  }, 4200);
+}
+//End Animation in Information About Us Page
+
+// Start Animation in Our Team Page
+function AnimationOurTeam() {
+  setTimeout(() => {
+    document.querySelectorAll("#bestStudent")[8].style.cssText +=
+      "animation: showing-text 1s, cursor 0.4s step-end alternate,showTitleMsp 0.2s forwards;";
+  }, 200);
+  setTimeout(() => {
+    document.querySelectorAll(".des-info-bestStudent")[1].style.cssText +=
+      "animation:showTitleMsp 1s forwards;";
+  }, 1200);
+}
+function ScrollingAnimationOurTeam() {
+  const myCards = document.querySelectorAll(".card1");
+  let totalHeight = (window.innerHeight / 5) * 4;
+  const btnsLeftRight = document.querySelectorAll(".content3")[0];
+  const btnsLeftRightTop = btnsLeftRight.getBoundingClientRect().top;
+  if (
+    document.querySelectorAll(".des-info-bestStudent")[1].style.animation ==
+    "1s ease 0s 1 normal forwards running showTitleMsp"
+  ) {
+    myCards.forEach((e) => {
+      //here rdElement is the buttons in every section and e represents each button in each section
+      var eTop = e.getBoundingClientRect().top;
+      if (eTop < totalHeight) {
+        e.style.cssText += "animation: showTitleMsp 1s forwards;";
       } else {
-        [...QuestionsAsked.children].forEach((e) => {
-          e.style.cssText += `animation:none;`;
-        });
+        e.style.cssText += "animation:auto;";
       }
-      if (featuresImageTop < mytotalHeight) {
-        featuresImage.style.cssText += "animation: showTitleMsp 3s forwards;";
-      } else {
-        featuresImage.style.cssText += "animation:auto";
-      }
-      if (formQuestionsTop < mytotalHeight) {
-        formQuestions.style.cssText += "animation: showTitleMsp 2s forwards;";
-      } else {
-        formQuestions.style.cssText += "animation:auto";
-      }
-      ndElement.forEach((e) => {
-        var eTop = e.getBoundingClientRect().top;
-        if (eTop < mytotalHeight) {
-          e.style.cssText += "animation: showTitleMsp 1s forwards;";
-        } else {
-          e.style.cssText += "animation:auto";
-        }
-      });
-      features.forEach((e) => {
-        var eTop = e.getBoundingClientRect().top;
-        if (eTop < mytotalHeight) {
-          e.style.cssText += "animation: showTitleMsp 1s forwards;";
-        } else {
-          e.style.cssText += "animation:auto";
-        }
-      });
-      participants.forEach((e) => {
-        var eTop = e.getBoundingClientRect().top;
-        if (eTop < mytotalHeight) {
-          e.style.cssText += "animation: showTitleMsp 1s forwards;";
-        } else {
-          e.style.cssText += "animation:auto";
-        }
-      });
-      sponserCards.forEach((e) => {
-        var eTop = e.getBoundingClientRect().top;
-        if (eTop < mytotalHeight) {
-          e.style.cssText += "animation: showTitleMsp 1s forwards;";
-        } else {
-          e.style.cssText += "animation:auto";
-        }
-      });
-      // if (myNdElementTop < mytotalHeight) {
-      //   ndElement.style.cssText += "animation: showTitleMsp 1s forwards;";
-      // } else {
-      //   ndElement.style.cssText += "animation:auto";
-      // }
-      rdElement.forEach((e) => {
-        //here rdElement is the cards in ourCommittees section and e represents each card in this section
-        var eTop = e.getBoundingClientRect().top;
-        if (eTop < mytotalHeight) {
-          e.style.cssText += "animation: showTitleMsp 1s forwards;";
-        } else {
-          e.style.cssText += "animation:auto";
-        }
-      });
-      thElement.forEach((e) => {
+    });
+    if (btnsLeftRightTop < totalHeight) {
+      btnsLeftRight.style.cssText += "animation: showTitleMsp 1s forwards;";
+    } else {
+      btnsLeftRight.style.cssText += "animation:auto;";
+    }
+  } else {
+    setTimeout(() => {
+      myCards.forEach((e) => {
         //here rdElement is the buttons in every section and e represents each button in each section
         var eTop = e.getBoundingClientRect().top;
-        if (eTop < mytotalHeight) {
+        if (eTop < totalHeight) {
           e.style.cssText += "animation: showTitleMsp 1s forwards;";
         } else {
           e.style.cssText += "animation:auto;";
         }
       });
-    };
-  });
-  // window.onscroll = function showingAnimationHome() {
-  //   // document.querySelector(
-  //   //     ".main-effect"
-  //   // )[0].style.cssText = `animation: showing-text 2s, cursor 0.4s step-end alternate;`;
-  //   console.log("hello");
-  //   let mytotalHeight = (window.innerHeight / 5) * 4;
-  //   const stElement = document.querySelectorAll("#bestStudent")[2];
-  //   let mytitleTop = stElement.getBoundingClientRect().top;
-  //   if (mytitleTop < mytotalHeight) {
-  //     document.querySelectorAll("#bestStudent")[2].style.cssText +=
-  //       "animation: showing-text-reverse 1s, cursor 0.4s step-end alternate,showTitleMsp 0.2s forwards;";
-  //     console.log("Arrived");
-  //   } else {
-  //     document.querySelectorAll("#bestStudent")[2].style.cssText +=
-  //       "animation: showing-text-reverse 1s, cursor 0.4s step-end alternate";
-  //     console.log("left");
-  //   }
-  // };
+      if (btnsLeftRightTop < totalHeight) {
+        btnsLeftRight.style.cssText += "animation: showTitleMsp 1s forwards;";
+      } else {
+        btnsLeftRight.style.cssText += "animation:auto;";
+      }
+    }, 2200);
+  }
 }
-//End Animation in Home Page
+// End Animation in Our Team Page
 
+//Start Animation Blog Page
+function AnimationBlog() {
+  setTimeout(() => {
+    document.querySelectorAll("#bestStudent")[9].style.cssText +=
+      "animation: showing-text 1s, cursor 0.4s step-end alternate,showTitleMsp 0.2s forwards;";
+  }, 200);
+  setTimeout(() => {
+    document.querySelectorAll(".des-info-bestStudent")[2].style.cssText +=
+      "animation:showTitleMsp 1s forwards;";
+  }, 1200);
+}
+function ScrollingAnimationBlog() {
+  const myBlogCards = document.querySelectorAll(".card-blog");
+  let totalHeight = (window.innerHeight / 5) * 4;
+  const btnsLeftRight = document.querySelectorAll(".content3")[1];
+  const btnsLeftRightTop = btnsLeftRight.getBoundingClientRect().top;
+  if (
+    document.querySelectorAll(".des-info-bestStudent")[2].style.animation ==
+    "1s ease 0s 1 normal forwards running showTitleMsp"
+  ) {
+    myBlogCards.forEach((e) => {
+      //here rdElement is the buttons in every section and e represents each button in each section
+      var eTop = e.getBoundingClientRect().top;
+      if (eTop < totalHeight) {
+        e.style.cssText += "animation: showTitleMsp 1s forwards;";
+      } else {
+        e.style.cssText += "animation:auto;";
+      }
+    });
+    if (btnsLeftRightTop < totalHeight) {
+      btnsLeftRight.style.cssText += "animation: showTitleMsp 1s forwards;";
+    } else {
+      btnsLeftRight.style.cssText += "animation:auto;";
+    }
+  } else {
+    setTimeout(() => {
+      myBlogCards.forEach((e) => {
+        //here rdElement is the buttons in every section and e represents each button in each section
+        var eTop = e.getBoundingClientRect().top;
+        if (eTop < totalHeight) {
+          e.style.cssText += "animation: showTitleMsp 1s forwards;";
+        } else {
+          e.style.cssText += "animation:auto;";
+        }
+      });
+      if (btnsLeftRightTop < totalHeight) {
+        btnsLeftRight.style.cssText += "animation: showTitleMsp 1s forwards;";
+      } else {
+        btnsLeftRight.style.cssText += "animation:auto;";
+      }
+    }, 2200);
+  }
+}
+//End Animation Blog Page
+
+// Start Animation Contact Page
+function AnimationContact() {
+  setTimeout(() => {
+    document.querySelectorAll("#bestStudent")[10].style.cssText +=
+      "animation: showing-text 1s, cursor 0.4s step-end alternate,showTitleMsp 0.2s forwards;";
+  }, 200);
+  setTimeout(() => {
+    document.querySelectorAll(".des-info-bestStudent")[3].style.cssText +=
+      "animation:showTitleMsp 1s forwards;";
+  }, 1200);
+}
+function ScrollingAnimationContact() {
+  let totalHeight = (window.innerHeight / 5) * 4;
+  const infoCard = document.querySelectorAll(".top_");
+  const hrContact = document.querySelectorAll(".main-contact");
+  const hrTimeline = document.querySelector("#timeline-wrap");
+  const hrTimelineTop = hrTimeline.getBoundingClientRect().top;
+  const startFaqSec = document.querySelectorAll("#contact details")[0];
+  const startFaqSecTop = startFaqSec.getBoundingClientRect().top;
+  if (startFaqSecTop < totalHeight) {
+    for (
+      let i = 0;
+      i < document.querySelectorAll("#contact details").length;
+      i++
+    ) {
+      document.querySelectorAll("#contact details")[
+        i
+      ].style.cssText += `animation:question-asked-${i} 2s forwards;`;
+    }
+  } else {
+    for (
+      let i = 0;
+      i < document.querySelectorAll("#contact details").length;
+      i++
+    ) {
+      document.querySelectorAll("#contact details")[
+        i
+      ].style.cssText += `animation:auto;`;
+    }
+  }
+  const desTitleContact = [
+    document.querySelectorAll(".des-info-bestStudent")[4],
+    document.querySelectorAll(".des-info-bestStudent")[5],
+  ];
+  const titleContact = [
+    document.querySelectorAll("#bestStudent")[11],
+    document.querySelectorAll("#bestStudent")[12],
+  ];
+  if (hrTimelineTop < totalHeight) {
+    document.querySelector("#timeline").style.cssText +=
+      "animation: show-line-contact 3s forwards;";
+    for (
+      let index = 0;
+      index < document.querySelectorAll(".iconTimeline").length;
+      index++
+    ) {
+      document.querySelectorAll(".iconTimeline")[
+        index
+      ].style.cssText += `animation:show-icon-${index + 1} 3s forwards;`;
+    }
+  } else {
+    document.querySelector("#timeline").style.cssText += "animation: auto;";
+    for (
+      let index = 0;
+      index < document.querySelectorAll(".iconTimeline").length;
+      index++
+    ) {
+      document.querySelectorAll(".iconTimeline")[
+        index
+      ].style.cssText += `animation:auto;`;
+    }
+  }
+  infoCard.forEach((e) => {
+    var eTop = e.getBoundingClientRect().top;
+    if (eTop < totalHeight) {
+      e.style.cssText += "animation : showTitleMsp 1s forwards;";
+    } else {
+      e.style.cssText += "animation :auto;";
+    }
+  });
+  desTitleContact.forEach((e) => {
+    var eTop = e.getBoundingClientRect().top;
+    if (eTop < totalHeight) {
+      e.style.cssText += "animation:showTitleMsp 1s forwards;";
+    } else {
+      e.style.cssText += "animation :auto;";
+    }
+  });
+  titleContact.forEach((e) => {
+    var eTop = e.getBoundingClientRect().top;
+    if (eTop < totalHeight) {
+      e.style.cssText +=
+        "animation: showing-text 1s, cursor 0.4s step-end alternate,showTitleMsp 0.2s forwards;";
+    } else {
+      e.style.cssText += "animation :auto;";
+    }
+  });
+  hrContact.forEach((e) => {
+    var eTop = e.getBoundingClientRect().top;
+    if (eTop < totalHeight) {
+      e.style.cssText += "animation : line-through-mobile 2s forwards;";
+    } else {
+      e.style.cssText += "animation :auto;";
+    }
+  });
+}
+// End Animation Contact Page
 function checkNetworkSpeed() {
   if (navigator.onLine) {
     setTimeout(() => {
@@ -737,6 +2220,11 @@ function checkNetworkSpeed() {
       // End animation Header
       setTimeout(
         (window.onscroll = function showing() {
+          ScrollingAnimationHome();
+          ScrollingAnimationInfo();
+          ScrollingAnimationOurTeam();
+          ScrollingAnimationBlog();
+          ScrollingAnimationContact();
           // document.querySelector(
           //     ".main-effect"
           // )[0].style.cssText = `animation: showing-text 2s, cursor 0.4s step-end alternate;`;
